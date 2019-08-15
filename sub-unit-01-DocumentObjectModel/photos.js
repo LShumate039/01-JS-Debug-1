@@ -42,10 +42,35 @@ function zoomFig() {
    
 }
 
+function createEventListeners(){
+   var leftArrow = document.getElementById("leftarrow");
+   if(leftArrow.addEventListener){
+      leftArrow.addEventListener("click", leftArrow, false);
+   }else if (leftarrow.attachEvent){
+      leftArrow.attachEvent("onclick", leftArrow); 
+   }
+}
+function leftArrow(){
+   alert("left arrow clicked");
+}
+
+function createEventListeners(){
+   var rightArrow = document.getElementById("rightarrow");
+   if(rightArrow.addEventListener){
+      rightArrow.addEventListener("click", rightArrow, false);
+   }else if (rightarrow.attachEvent){
+      rightArrow.attachEvent("onclick", rightArrow); 
+   }
+}
+function rightArrow(){
+   alert("right arrow clicked");
+}
+
+
+
 /* create event listeners and populate image elements */
 function setUpPage() {
    createEventListeners();
-   populateFigures();
 }
 
 /* run setUpPage() function when page finishes loading */
