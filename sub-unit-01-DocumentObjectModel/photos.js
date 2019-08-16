@@ -13,6 +13,8 @@
 /* global variables */
 var photoOrder = [1,2,3,4,5];
 
+var figureCount = 3;
+
 /* shift all images one figure to the left, and change values in photoOrder array to match  */
 function rightArrow() {
    for (var i = 0; i < 5; i++) {
@@ -43,29 +45,94 @@ function zoomFig() {
 }
 
 function createEventListeners(){
-   var leftArrow = document.getElementById("leftarrow");
-   if(leftArrow.addEventListener){
-      leftArrow.addEventListener("click", leftArrow, false);
+   var leftarrow = document.getElementById("leftarrow");
+   if(leftarrow.addEventListener){
+      leftarrow.addEventListener("click", leftArrow, false);
    }else if (leftarrow.attachEvent){
-      leftArrow.attachEvent("onclick", leftArrow); 
+      leftarrow.attachEvent("onclick", leftArrow); 
    }
-}
-function leftArrow(){
-   alert("left arrow clicked");
-}
-
-function createEventListeners(){
-   var rightArrow = document.getElementById("rightarrow");
-   if(rightArrow.addEventListener){
-      rightArrow.addEventListener("click", rightArrow, false);
+   var rightarrow = document.getElementById("rightarrow");
+   if(rightarrow.addEventListener){
+      rightarrow.addEventListener("click", rightArrow, false);
    }else if (rightarrow.attachEvent){
-      rightArrow.attachEvent("onclick", rightArrow); 
+      rightarrow.attachEvent("onclick", rightArrow); 
    }
+
+   var showAllButton = document.querySelector("#fiveButton p");
+   if(showAllButton.addEventListener){
+      showAllButton.addEventListener("click", previewFive, false); 
+   }
+   else if (showAllButton.attachEvent){
+      showAllButton.attachEvent("onclick", previewFive);
+   }
+
+   var articleElem = document.getElementsByTagName("article")[0];
+   alert(articleElem);
+   lastFigure.appendChild(lastImage); 
+   articleElem.appendChild(lastImage);
 }
-function rightArrow(){
-   alert("right arrow clicked");
+var firstFigure = lastFigure.cloneNode(true);
+firstFigure.id = "fig1";
+firstFigure.style.right = "";
+firstFigure.style.left = "45px";
+
+articleElem.appendChild(firstFigure); 
+
+previewFive():
+ document.getElementsByTagName("img")[3].src = "images/IMG_0" + photoOrder[4] + "sm.jpg";
+
+
+
+
+
+
+
+
+
+
+
+
+   var lastFigure = document.createElement("figure");
+   lastFigure.id = "fig5";
+   lastFigure.style.zIndex = "5";
+   lastFigure.style.position = "absolute";
+   lastFigure.style.right = "45px";
+   lastFigure.style.top = "67px";
+
+   var lastImage = document.createElement("img");
+   lastImage.width = "240";
+   lastImage.height = "135";
+
+
+
+
+
+var mainFig = document.getElementsByTagName("img")[1];
+
+if(mainFig.addEventListener){
+   mainFig.addEventListener("click", zoomFig, false); 
+}
+else if(mainFig.attachEvent){
+   mainFig.attachEvent("onclick", zoomFig);
 }
 
+function zoomFig(){
+   alert("center image clicked");
+}
+
+
+
+
+
+function populateFigures(){
+   var filename;
+   var currentFig; 
+   for (var i = 1; i < 4; i++){
+      filename = "images/IMG_0"+ photoOrder[i] + "sm.jpg";
+      currentFig = document.getElementsByTagName("img")[i - 1];
+      currentFig.src = filename; 
+   }
+}
 
 
 /* create event listeners and populate image elements */
